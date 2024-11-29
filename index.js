@@ -9,6 +9,9 @@ cron.schedule("*/5 * * * * *", function () {
   console.log("running a task every 5 second");
   fetch("https://chron-job.onrender.com/").then((res, rej) => {});
   fetch("https://chat-go-taupe.vercel.app/").then((res, rej) => {});
+  fetch(
+    "mongodb+srv://chigsdroid:w16XAoMuh7NQYI5U@cluster0.jsnoftw.mongodb.net/"
+  ).then((res, rej) => {});
   fetch("https://go-foods-backend.onrender.com").then((res, rej) => {});
 });
 

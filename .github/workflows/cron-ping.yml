@@ -1,0 +1,25 @@
+name: Dynamic URL Pinger
+
+on:
+  schedule:
+    - cron: "*/5 * * * *" # Every 5 minutes
+  workflow_dispatch: # Allow manual run too
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Ping URLs from urls.txt
+        run: |
+          echo "Starting to ping URLs at $(date)"
+          while IFS= read -r url
+          do
+            if [[ ! -z "$url" ]]; then
+              echo "Pinging $url"
+              curl -s "$url" > /dev/null && echo "Success" || echo "Failed"
+            fi
+          done < urls.txt
